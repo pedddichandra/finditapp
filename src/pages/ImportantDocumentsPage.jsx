@@ -1,6 +1,8 @@
-import { useRef, useState, useEffect, useMemo } from 'react'
+import { useRef, useState, useEffect, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { addDocument, getAllDocuments, deleteDocument, updateDocument, DOCUMENT_TYPES, getDocumentSuggestions } from '../lib/documents'
+import LazyImage from '../components/LazyImage'
+import { useCachedData } from '../hooks/useDataCache'
 
 const ImportantDocumentsPage = () => {
   // Form state
@@ -47,10 +49,22 @@ const ImportantDocumentsPage = () => {
   const suggestionsRef = useRef(null)
   const searchInputRef = useRef(null)
 
-  // Load documents on mount
+  // Use cached data hook for optimized fetching
+  const { 
+    data: cachedDocs, 
+    loading: cacheLoading, 
+    refresh: refreshDocs 
+  } = useCachedData(getAllDocuments, 30000)
+
+  // Load documents on mount or when cache updates
   useEffect(() => {
-    loadDocuments()
-  }, [])
+    if (cachedDocs) {
+      setDocuments(cachedDocs)
+      setLoadingDocs(false)
+    } else if (!cacheLoading) {
+      setLoadingDocs(false)
+    }
+  }, [cachedDocs, cacheLoading])
 
   // Fetch suggestions as user types in search (debounced)
   useEffect(() => {
@@ -101,16 +115,11 @@ const ImportantDocumentsPage = () => {
     setFilterType('all')
   }
 
-  const loadDocuments = async () => {
+  const loadDocuments = useCallback(async () => {
     setLoadingDocs(true)
-    const result = await getAllDocuments()
-    if (result.success) {
-      setDocuments(result.data)
-    } else {
-      setError(result.error)
-    }
+    await refreshDocs()
     setLoadingDocs(false)
-  }
+  }, [refreshDocs])
 
   const handleImageChange = (e) => {
     const file = e.target.files[0]

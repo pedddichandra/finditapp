@@ -1,6 +1,8 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { getAllItems, deleteItem } from '../lib/items'
+import LazyImage from '../components/LazyImage'
+import { useCachedData } from '../hooks/useDataCache'
 
 /**
  * StoredItemsPage - Displays all user's stored items
@@ -118,21 +120,28 @@ const StoredItemsPage = () => {
       .map(([categoryName, categoryItems]) => ({ categoryName, items: categoryItems }))
   }, [items])
 
-  useEffect(() => {
-    fetchItems()
-  }, [])
+  // Use cached data hook for optimized fetching
+  const { 
+    data: cachedItems, 
+    loading: cacheLoading, 
+    refresh: refreshItems,
+    invalidateCache 
+  } = useCachedData(getAllItems, 30000) // Cache for 30 seconds
 
-  const fetchItems = async () => {
-    const result = await getAllItems()
-    
-    if (result.success) {
-      setItems(result.data || [])
-    } else {
-      setError(result.error || 'Failed to load items')
+  useEffect(() => {
+    if (cachedItems) {
+      setItems(cachedItems)
+      setLoading(false)
+    } else if (!cacheLoading) {
+      setLoading(false)
     }
-    
+  }, [cachedItems, cacheLoading])
+
+  const fetchItems = useCallback(async () => {
+    setLoading(true)
+    await refreshItems()
     setLoading(false)
-  }
+  }, [refreshItems])
 
   const handleEditClick = (item) => {
     setEditingId(item.id)

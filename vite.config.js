@@ -11,5 +11,20 @@ export default defineConfig({
         changeOrigin: true
       }
     }
+  },
+  build: {
+    // Code splitting for better caching
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor chunks - cached separately
+          'vendor-react': ['react', 'react-dom'],
+          'vendor-animation': ['framer-motion', 'gsap'],
+          'vendor-supabase': ['@supabase/supabase-js'],
+        }
+      }
+    },
+    // Optimize chunk size
+    chunkSizeWarningLimit: 600
   }
 })
