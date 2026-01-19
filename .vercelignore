@@ -1,0 +1,9 @@
+# Ignore Python backend - not needed for Vercel deployment
+backend/
+.venv/
+*.pyc
+__pycache__/
+*.db
+*.sqlite
+uploads/
+findit.db
