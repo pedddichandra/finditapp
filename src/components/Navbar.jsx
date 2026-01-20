@@ -71,11 +71,11 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
             whileTap={{ scale: 0.98 }}
           >
             <motion.div 
-              className="w-9 h-9 sm:w-10 sm:h-10 bg-gradient-to-br from-primary-cyan to-blue-500 rounded-lg flex items-center justify-center shadow-lg shadow-primary-cyan/30 group-hover:shadow-primary-cyan/50 transition-shadow"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg flex items-center justify-center shadow-lg shadow-primary-cyan/30 group-hover:shadow-primary-cyan/50 transition-shadow overflow-hidden"
               whileHover={{ rotate: [0, -10, 10, -10, 0] }}
               transition={{ duration: 0.5 }}
             >
-              <span className="text-xl sm:text-2xl">🧠</span>
+              <img src="/logo.svg" alt="FindIt AI" className="w-full h-full" />
             </motion.div>
             <span className="text-lg sm:text-xl font-bold gradient-text">FindIt AI</span>
           </motion.div>

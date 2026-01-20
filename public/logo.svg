@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Location Pin -->
+  <path d="M50 5 C28 5 10 23 10 45 C10 67 50 95 50 95 C50 95 90 67 90 45 C90 23 72 5 50 5 Z" fill="#1a1a2e" stroke="#0d47a1" stroke-width="2"/>
+  
+  <!-- Brain Icon Inside Pin - Realistic Shape -->
+  <g transform="translate(50, 40)">
+    <!-- Left Hemisphere - Main shape with bumpy lobes -->
+    <path d="M-3 -18 
+             C-8 -18 -12 -16 -15 -12
+             C-18 -8 -20 -4 -20 0
+             C-20 2 -19 5 -17 7
+             C-19 9 -20 12 -18 15
+             C-16 18 -12 19 -8 18
+             C-5 17 -3 15 -3 12
+             L-3 -18 Z" 
+          fill="none" stroke="#4fc3f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Left hemisphere folds/gyri -->
+    <path d="M-17 -6 C-12 -5 -8 -6 -5 -8" fill="none" stroke="#4fc3f7" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M-18 2 C-14 3 -9 2 -5 0" fill="none" stroke="#4fc3f7" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M-16 10 C-12 11 -8 10 -5 8" fill="none" stroke="#4fc3f7" stroke-width="1.8" stroke-linecap="round"/>
+    
+    <!-- Right Hemisphere - Main shape with bumpy lobes -->
+    <path d="M3 -18 
+             C8 -18 12 -16 15 -12
+             C18 -8 20 -4 20 0
+             C20 2 19 5 17 7
+             C19 9 20 12 18 15
+             C16 18 12 19 8 18
+             C5 17 3 15 3 12
+             L3 -18 Z" 
+          fill="none" stroke="#4fc3f7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Right hemisphere folds/gyri -->
+    <path d="M17 -6 C12 -5 8 -6 5 -8" fill="none" stroke="#4fc3f7" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M18 2 C14 3 9 2 5 0" fill="none" stroke="#4fc3f7" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M16 10 C12 11 8 10 5 8" fill="none" stroke="#4fc3f7" stroke-width="1.8" stroke-linecap="round"/>
+    
+    <!-- Brain stem -->
+    <path d="M-3 12 C-3 16 -2 20 0 22 C2 20 3 16 3 12" fill="none" stroke="#4fc3f7" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- Center divide line -->
+    <line x1="0" y1="-18" x2="0" y2="12" stroke="#0d47a1" stroke-width="1.5"/>
+  </g>
+</svg>
