@@ -181,8 +181,7 @@ const AboutPage = () => {
             transition={{ delay: 1 }}
             className="text-center mt-16 text-gray-500"
           >
-            <p>Built with ❤️ for better memory management</p>
-            <p className="text-sm mt-2">© 2024 FindIt AI - Academic Project</p>
+            <p className="text-sm">© 2025 FindIt AI - Academic Project</p>
           </motion.div>
         </motion.div>
       </div>
